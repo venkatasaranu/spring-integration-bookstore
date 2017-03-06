@@ -1,0 +1,24 @@
+No annotated method found; falling back to SequenceSizeReleaseStrategy, target:com.sageit.spring.integration.prodcod.service.OrderCompleter@51aa39ff, methodName:null
+orderSplitter received message: [Payload Order content=Order [orderId=0] 
+item: The Java Virtual Machine Specification quantity : 1 price: 31.05 total price: 31.05
+item: Dangerous quantity : 1 price: 100.00 total price: 100.00
+item: Mavericks quantity : 1 price: 100.00 total price: 100.00
+total price: 231.05][Headers={id=560316ad-4d01-3b64-a31b-8be850cd57c0, timestamp=1488510328760}]
+OrderSplitter -----> splitting Order into it's constituent OrderItems : number of OrderItems: 3 ****
+handler 'orderSplitter' sending reply Message: [Payload OrderItem content=com.sageit.spring.integration.prodcod.domain.OrderItem@a175cc5e][Headers={correlationId=560316ad-4d01-3b64-a31b-8be850cd57c0, sequenceSize=3, sequenceNumber=1, id=9ae9a616-4187-786e-34a2-5ef62c0700dd, timestamp=1488510328761}]
+*** [OrderItemRouter] ****
+*** [OrderItemRouter] sending item : The Java Virtual Machine Specification to bookItemsChannel ****
+handler 'orderSplitter' sending reply Message: [Payload OrderItem content=com.sageit.spring.integration.prodcod.domain.OrderItem@576f5e06][Headers={correlationId=560316ad-4d01-3b64-a31b-8be850cd57c0, sequenceSize=3, sequenceNumber=2, id=cfe0df57-87d4-721f-ecb6-158b5411366b, timestamp=1488510328764}]
+*** [OrderItemRouter] ****
+*** [Shopkeeper] processing book : The Java Virtual Machine Specification ****
+*** [OrderItemRouter] sending item : Dangerous to musicItemsChannel ****
+item (Book: The Java Virtual Machine Specification) item price: 31.05 discount: 1.55 final price: 29.50
+handler 'orderSplitter' sending reply Message: [Payload OrderItem content=com.sageit.spring.integration.prodcod.domain.OrderItem@946406da][Headers={correlationId=560316ad-4d01-3b64-a31b-8be850cd57c0, sequenceSize=3, sequenceNumber=3, id=d6980531-c230-c9d3-33d6-36e0b72fb0e0, timestamp=1488510328765}]
+*** [Shopkeeper] processing music : Dangerous ****
+*** [OrderItemRouter] ****
+item (MusicCD: Dangerous) item price: 100.00 discount: 10.00 final price: 90.00
+*** [OrderItemRouter] sending item : Mavericks to softwareItemsChannel ****
+*** [Shopkeeper] processing software : Mavericks ****
+item (Software: Mavericks) item price: 100.00 discount: 15.00 final price: 85.00
+[Order Aggregator]
+*** [OrderCompleter] CompletedOrder Discounted cost: 204.50 ****
